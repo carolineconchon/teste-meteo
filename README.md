@@ -7,5 +7,5 @@ Techno:
 - CSS
 - Javascript
 
-Api : [Wheather Stack]([https://openweathermap.org/api](https://weatherstack.com/))
+Api : [OpenWeather](https://openweathermap.org/api)
 _Clé api incluse en claire dans le code dans le cadre de l'exercice avec une utilisation limité par mois._
