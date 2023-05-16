@@ -10,20 +10,21 @@ function handleSubmit(event) {
 const getWeather = async function (city) {
 
     //api key
-    const key = "73e0c55dbba79a4258ee5b7f698c2673";
+    const key = "657f51e2f29ebd059ff01c2a2a6beee0";
 
     //api url
-    const url = "http://api.weatherstack.com/"
+    const url = "https://api.openweathermap.org/data/2.5/weather"
 
     //request api using the url and key then setting the city and the units(celsius, because the api is set on farenheit )  
     try {
-        const response = await fetch(`${url}current?access_key=${key}&query=${city}&units=m`);
+        const response = await fetch(`${url}?zip=${city},fr&appid=${key}&units=metric`);
         const data = await response.json();
         console.log(data);
         //update the DOM
-        document.getElementById('city').innerHTML = data.location.name;
-        document.getElementById('temp').innerHTML = data.current.temperature + "°C";
-        document.getElementById('weather-icon').src = data.current.weather_icons;
+        document.getElementById('city').innerHTML = data.name;
+        document.getElementById('temp').innerHTML = data.main.temp + "°C";
+     document.getElementById('weather-icon').src = `http://openweathermap.org/img/wn/${ data.weather[0].icon}@2x.png`;
+        console.log(data.weather[0].icon)
     } catch (error) {
         //if the request is false or there is an error
         console.log('Une erreur s\'est produite lors de la récupération des données', error);
@@ -34,4 +35,4 @@ const getWeather = async function (city) {
 document.querySelector("form").addEventListener("submit", handleSubmit)
 
 //default value when the page the app is launch
-getWeather("penmarc'h")
+getWeather("76000")
